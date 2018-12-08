@@ -1,0 +1,129 @@
+<html>
+	<head>
+		<title>Code-Editor</title>
+		
+		<link href="jquery-ui/jquery-ui.css"/>
+		
+		
+		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
+		</script>
+		
+		<style>
+		#topbar{
+			width:100%;
+			height:40px;
+			background-color:orange;
+		}
+		h1{
+			float:left;
+			font-family:Helvetica;
+			font-size:23px;
+			position:relative;
+			bottom:4px;
+		
+		}
+		.button{
+		float:left;
+		height:40px;
+		background-color:green;
+		border-radius:5px;
+		color:white;
+		
+		}
+		#buttonBar{
+			position:relative;
+			left:300px;
+		}
+		.container{
+			float:left;
+			margin-left:0px;
+			width:50%;
+			height:80%;
+		}
+		#main-content{
+			width:100%;
+			margin-top:30px;
+		}
+		iframe{
+			padding:0px;
+			margin:0px;
+			border:1px solid black;
+		}
+		#output{
+			width:48%;
+		}
+		</style>
+	</head>
+	<body>
+		<div id="topbar">
+			<h1>Code-Editor</h1>
+			<div id="buttonBar">
+				<button id="htmlButton" class="button">HTML</button>
+				<button id="cssButton" class="button">Css</button>
+				<button id="javascriptButton" class="button">Javascript</button>
+				<button id="outputButton" class="button">Output</button>
+			</div>
+		</div>
+		
+		<div id="main-content">
+			<textarea id="html" class="container">
+			
+			</textarea>
+			<textarea id="css" class="container" style="display:none;">
+			
+			</textarea>
+			<textarea id="javascript" class="container" style="display:none;">
+			
+			</textarea>
+			<iframe id="output" class="container" >
+			
+			</iframe>
+		
+		</div>
+	    <script src="jquery-ui/jquery-ui.js"></script>
+		<script type="text/javascript">
+		$(document).ready(function(){
+			$("textarea").on('change keyup paste',function(){
+				$("iframe").contents().find("html").html("<html><head><style type='text/css'>"
+				+$("#css").val()+"</style></head><body>"+$("#html").val()+"</body></html>");
+			});
+			$("#cssButton").click(function(){
+				$("#css").css({
+					display:"block",
+					width:"33%",
+					
+				});
+				$("#html").css({
+						width:"33%",
+					});
+					$("#output").css({
+						width:"31%",
+					});
+			});
+			
+			$("#javascriptButton").click(function(){
+				$("#javascript").css({
+					display:"block",
+					width:"25%",
+					
+				});
+					$("#html").css({
+						width:"25%",
+					});
+					$("#output").css({
+						width:"23%",
+					});
+					$("#css").css({
+						width:"25%",
+					});
+					
+			});
+			
+			
+			});
+		</script>
+	
+
+	</body>
+
+</html>
